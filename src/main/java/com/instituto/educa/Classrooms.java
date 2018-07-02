@@ -10,8 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-//import com.nostra13.universalimageloader.core.ImageLoader;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -28,28 +26,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Courses extends AppCompatActivity {
+public class Classrooms extends AppCompatActivity {
     private ListView mListView;
     private String access = "";
-    private int classroom_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_courses);
 
-        Bundle mainData = getIntent().getExtras();
-        if (mainData == null)
+        Bundle tokenData = getIntent().getExtras();
+        if (tokenData == null)
         {
             // TODO: Do something here lmao
         }
 
-        access = mainData.getString("access");
-        classroom_id = mainData.getInt("classroom_id");
+        access = tokenData.getString("access");
 
         StringRequest stringRequest= new StringRequest(
                 Request.Method.GET,
-                APIContract.URL + "classrooms/" + classroom_id + "/courses/",
+                APIContract.URL + "mine/",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -97,18 +93,15 @@ public class Courses extends AppCompatActivity {
 
         for (int i = 0; i < courses.length(); i++)
         {
-            final JSONObject obj = courses.getJSONObject(i);
-            final JSONObject course = obj.getJSONObject("course");
-            final JSONObject professor = obj.getJSONObject("professor");
-            String title = course.getString("title");
-            list.add(new Card(APIEduca.getUrl(course.getString("image")), title, new Runnable(){
+            final JSONObject classroom = courses.getJSONObject(i);
+            final int classroom_id = classroom.getInt("id");
+            String room = classroom.getString("room");
+            list.add(new Card("drawable://" + R.drawable.bamf1, room, new Runnable(){
                 @Override
                 public void run() {
-                    Intent i = new Intent(Courses.this, Course.class);
+                    Intent i = new Intent(Classrooms.this, Classroom.class);
                     i.putExtra("access", access);
                     i.putExtra("classroom_id", classroom_id);
-                    i.putExtra("course", course.toString());
-                    i.putExtra("professor", professor.toString());
                     startActivity(i);
                 }
             }));

@@ -4,13 +4,11 @@ public class Card {
     private String imgURL;
     private String title;
     private Runnable onClick;
-    //private String newActivityName;
 
-    public Card(String imgURL, String title, Runnable onClick /*String newActivityName*/) {
+    public Card(String imgURL, String title, Runnable onClick) {
         this.imgURL = imgURL;
         this.title = title;
         this.onClick = onClick;
-        //this.newActivityName = newActivityName;
     }
 
     public String getImgURL() {
@@ -36,12 +34,4 @@ public class Card {
     public void setOnClick(Runnable onClick) {
         this.onClick = onClick;
     }
-
-    /*public String getNewActivityName() {
-        return newActivityName;
-    }
-
-    public void setNewActivityName(String newActivityName) {
-        this.newActivityName = newActivityName;
-    }*/
 }

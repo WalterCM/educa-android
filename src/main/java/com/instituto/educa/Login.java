@@ -3,11 +3,13 @@ package com.instituto.educa;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.ActionMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -25,9 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Login extends AppCompatActivity {
-
-    private final String URL = "http://192.168.1.6:8000/api/token/";
-
+    TextView linkSignup;
     EditText edtUsername, edtPassword;
     Button btnLogin;
 
@@ -45,6 +45,14 @@ public class Login extends AppCompatActivity {
                 login();
             }
         });
+
+        linkSignup = findViewById(R.id.link_signup);
+        linkSignup.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intent = new Intent(Login.this, Register.class);
+                startActivity(intent);
+                finish();
+            }});
     }
 
     private void login() {
@@ -55,32 +63,6 @@ public class Login extends AppCompatActivity {
         Log.e("Login: ", "username: " + username);
         Log.e("Login: ", "password: " + password);
 
-        /*StringRequest tokenRequest= new StringRequest(
-                Request.Method.POST,
-                URL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.e("REST RESPONSE: ", response);
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("REST ERROR RESPONSE: ", error.toString());
-                    }
-                }
-        ) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("username", username);
-                params.put("password", password);
-
-                return params;
-            }
-        };*/
-
         Map<String, String> params = new HashMap();
         params.put("username", username);
         params.put("password", password);
@@ -89,7 +71,7 @@ public class Login extends AppCompatActivity {
 
         JsonObjectRequest jsonRequest = new JsonObjectRequest(
                 Request.Method.POST,
-                URL,
+                APIContract.URL + "token/",
                 parameters,
                 new Response.Listener<JSONObject>() {
                     @Override

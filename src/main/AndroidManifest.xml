@@ -23,7 +23,16 @@
         <activity android:name=".Courses" />
         <activity android:name=".Course" />
         <activity android:name=".Attendance" />
-        <activity android:name=".Notifications"></activity>
+        <activity android:name=".Notifications" />
+        <activity android:name=".CourseInfo" />
+        <activity android:name=".Grades" />
+        <activity android:name=".Register" />
+        <activity android:name=".Enrollment" />
+        <activity android:name=".ClassroomCreation" />
+        <activity android:name=".Classrooms" />
+        <activity android:name=".Classroom" />
+        <activity android:name=".Notification" />
+        <activity android:name=".CreateNotification"></activity>
     </application>
 
 </manifest>

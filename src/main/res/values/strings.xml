@@ -1,6 +1,31 @@
 <resources>
     <string name="app_name">Educa</string>
-
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="username">Nombre de usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="login">Iniciar sesion</string>
+    <string name="no_account_yet_create_one">No tienes una cuenta? Create una ahora</string>
+    <string name="register">Registrarse</string>
+    <string name="already_have_an_account">Ya tienes una cuenta?</string>
+    <string name="password2">Repita su contraseña</string>
+    <string name="email">Email</string>
+    <string name="first_name">Nombre</string>
+    <string name="last_name">Apellido</string>
+    <string name="user_type">Tipo de cuenta</string>
+    <string name="create_class">Crear salon</string>
+    <string name="room">Aula</string>
+    <string name="subject">Asunto</string>
+    <string name="delete">Borrar</string>
+    <string name="from">De</string>
+    <string name="created">Creado</string>
+    <string name="text">Notificacion</string>
+    <string name="create_notification">Crear notificacion</string>
+
+    <string-array name="user_types">
+        <item>Alumno</item>
+        <item>Apoderado</item>
+        <item>Profesor</item>
+    </string-array>
+
 </resources>
